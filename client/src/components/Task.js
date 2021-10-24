@@ -102,15 +102,15 @@ export default function Task() {
 
             console.log(res);
 
-            // const newList = list;
-            // newList.forEach(task => {
-            //     if(task.uuid === uuid) {
-            //         task.title = title,
-            //         task.isComplete = isComplete
-            //     }
-            // })
+            const newList = list.map(task => {
+                if(task.uuid == uuid) {
+                    return { ...task , title , isComplete };
+                }
+                return task;
+            });
 
-            // setList(newList);
+
+            setList(newList);
 
         } catch (error) {
             console.log("Edit Error -->", error);
@@ -118,6 +118,12 @@ export default function Task() {
 
         setTitle("");
         setEditMode(false);
+        setTaskuuid(null)
+    }
+
+    const handleCancle = () => {
+        setEditMode(false)
+        setTitle("")
         setTaskuuid(null)
     }
 
@@ -160,7 +166,7 @@ export default function Task() {
 
                             <button
                                 type="submit"
-                                onClick={()=>setEditMode(false)}
+                                onClick={handleCancle}
                                 >
                                 cancle
                             </button>
