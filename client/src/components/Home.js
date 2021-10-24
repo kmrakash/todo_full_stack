@@ -18,6 +18,7 @@ export default function Home() {
   return (
     <React.Fragment>
       <h1>Logged In Successfully</h1>
+          <Link to="/task"> Create Your Task Here </Link>
     </React.Fragment>
   );
 }

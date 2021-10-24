@@ -17,8 +17,11 @@ export function API({ endpoint = "", method = "GET", data = {} }, authTokens) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${authTokens}`,
     },
-    body : body
+    // body : body
   };
+
+  if(method !== "GET")
+    config.body = body;
 
   console.log(config);
   return fetch(endpoint, config)

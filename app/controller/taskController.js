@@ -73,6 +73,9 @@ module.exports = {
 
     // Delete
     async deleteTask(req, res) {
+
+        console.log("---Delete Task---")
+
         const { uuid } = req.body;
 
         try {
