@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 // import { Link } from "react-router-dom"
 import { useAuth } from "../context/auth";
 import { API } from "../helpers/api"
+import Button from "./Button";
+import Input from "./Input";
 
 export default function Task() {
 
@@ -53,6 +55,7 @@ export default function Task() {
             setIsError(error);
             console.log(error);
         }
+        // setList([])
         setIsLoading(false);
         setTitle("");
     }
@@ -143,13 +146,17 @@ export default function Task() {
         <React.Fragment>
 
             <form  onSubmit = { editMode ? handleEditSubmit : handleSubmit  }>
+                <div className=" flex place-content-center place-items-center">
+
                 <label
+                className="w-2/12 px-2 uppercase font-bold"
                     htmlFor="title">
                         Task:
                 </label>
-                <input
+                <Input
                     type="text"
                     name="title"
+                    className="w-6/12"
                     ref={taskInput}
                     value={title}
                     onChange={(e) => setTitle(e.target.value)} />
@@ -157,44 +164,76 @@ export default function Task() {
                     {
                         editMode ?
                         (<>
-                            <button
+                            <Button
                                 type="submit"
-                                // onSubmit={handleEditSubmit}
+                                className="mx-2 h-10"
                                 >
                                 Edit
-                            </button>
+                            </Button>
 
-                            <button
+                            <Button
                                 type="submit"
+                                className="bg-red-700 h-10"
                                 onClick={handleCancle}
                                 >
                                 cancle
-                            </button>
+                            </Button>
                         </>) :
-                        (<button
+                        (<Button
                             type="submit"
+                            className="ml-2 w-3/12 h-10"
                             // onSubmit={handleSubmit}
                             >
                             create
-                        </button>)
+                        </Button>)
                     }
-
+                </div>
             </form>
 
+            <Box>
+                <h1 className="font-bold uppercase" >Your Tasks :</h1>
 
             {
                 list &&
                 list.map((task, idx) => {
                     const { uuid , title } = task;
-                    return <li
+                    return <Items
                         key = {idx}>
+                            <p className="ml-1">
                              {title}
-                              <button onClick={() => handleEdit({ uuid , title })} > Edit </button>
-                              <button onClick={()=>handleDelete(uuid)}> Delete </button>
-                             </li>
+
+                            </p>
+
+                              <Button
+                               className="mx-2"
+                               onClick={() => handleEdit({ uuid , title })} >
+                               Edit
+                               </Button>
+
+                              <Button
+                              onClick={()=>handleDelete(uuid)}>
+                              Delete
+                              </Button>
+
+                        </Items>
                 })
             }
-
+        </Box>
         </React.Fragment>
     );
+}
+
+function Items({ children }) {
+    return <div className="border-2 border-black bg-white flex space-x-end py-2 mb-1">
+        { children }
+    </div>
+}
+
+
+function Box({ children }) {
+    return <div className="container w-1/2 h-auto bg-red-500">
+        <div className="flex flex-col border-4 border-black p-2">
+            { children }
+        </div>
+    </div>
 }
