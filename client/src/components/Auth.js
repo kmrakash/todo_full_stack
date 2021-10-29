@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { useAuth } from "../context/auth";
 import { login } from "../helpers/api";
 import { register } from "../helpers/api";
-
+import Message from "./Message";
 import Button from "./Button";
 import Input from "./Input";
 
@@ -13,23 +13,28 @@ export default function Auth({ mode }) {
 //   const [] = ;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
 
   const referer = history?.location?.state?.referer || "/";
+
 
   const postLogin = (e) => {
     e.preventDefault();
     login({ username, password })
       .then((response) => {
-          console.log("Login Response:", response);
+         // console.log("Login Response:", response);
         if (response.accessToken) {
           setAuthTokens(response.accessToken);
           setUser(response.username);
           setLoggedIn(true);
+
         } else {
-          console.error(response.reason);
+        //   console.error(response.reason);
+          setErrMsg(response.reason);
         }
       })
       .catch((error) => {
+          setErrMsg(error);
         console.log(error);
       });
   };
@@ -39,9 +44,11 @@ export default function Auth({ mode }) {
         register({ username, password }).then((response) => {
             if (response.status === 200) {
                 console.log(response.message);
+                // setErrMsg("Signed up successfully");
                 history.push("/login")
             } else if (response.status >= 400) {
-                console.error(response.message);
+                setErrMsg(response.message);
+                // console.error(response.message);
             }
         });
     };
@@ -58,6 +65,11 @@ export default function Auth({ mode }) {
             flex-col
             items-center
         `}>
+
+
+       { errMsg && <Message>
+            {errMsg}
+        </Message>}
 
 
       <form onSubmit={ mode === 'login' ? postLogin : postRegistration }>
