@@ -25,6 +25,6 @@ module.exports = {
     database: process.env.PRODUCTION_DATABASE,
     host: process.env.PRODUCTION_DATABASE_HOST,
     dialect: "postgres",
-    port: "5432",
+    port: "5431",
   },
 };
