@@ -18,13 +18,13 @@ module.exports = {
 //     dialect: "postgres",
 //     port: "5432",
 //   },
-//   production: {
-//     use_env_variable: "DATABASE_URL",
-//     username: process.env.PRODUCTION_DATABASE_USERNAME,
-//     password: process.env.PRODUCTION_DATABASE_PASSWORD,
-//     database: process.env.PRODUCTION_DATABASE,
-//     host: process.env.PRODUCTION_DATABASE_HOST,
-//     dialect: "postgres",
-//     port: "5432",
-//   },
+  production: {
+      use_env_variable: "postgresql-sinuous-22047",
+    username: process.env.PRODUCTION_DATABASE_USERNAME,
+    password: process.env.PRODUCTION_DATABASE_PASSWORD,
+    database: process.env.PRODUCTION_DATABASE,
+    host: process.env.PRODUCTION_DATABASE_HOST,
+    dialect: "postgres",
+    port: "5432",
+  },
 };
