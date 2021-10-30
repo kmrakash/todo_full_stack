@@ -171,16 +171,14 @@ export default function Task() {
                         (<>
                             <Button
                                 type="submit"
-                                className="mx-2 h-10"
-                                color="blue"
+                                className="mx-2 h-10 bg-blue-400 hover:bg-blue-700"
                                 >
                                 Edit
                             </Button>
 
                             <Button
                                 type="submit"
-                                className="bg-red-700 h-10"
-                                color="gray"
+                                className="bg-red-700"
                                 onClick={handleCancle}
                                 >
                                 cancle
@@ -188,8 +186,7 @@ export default function Task() {
                         </>) :
                         (<Button
                             type="submit"
-                            color="blue"
-                            className="ml-2 w-3/12 h-10"
+                                className="ml-2 w-3/12 h-10 bg-blue-400 hover:bg-blue-700"
                             // onSubmit={handleSubmit}
                             >
                             create
@@ -213,14 +210,13 @@ export default function Task() {
                             </p>
 
                               <Button
-                               className="mx-2"
-                               color="blue"
+                            className="mx-2 bg-blue-400 hover:bg-blue-700"
                                onClick={() => handleEdit({ uuid , title })} >
                                Edit
                                </Button>
 
                               <Button
-                              color="red"
+                              className="bg-red-400 hover:bg-red-600"
                               onClick={()=>handleDelete(uuid)}>
                               Delete
                               </Button>

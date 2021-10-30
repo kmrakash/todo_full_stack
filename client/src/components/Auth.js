@@ -97,8 +97,7 @@ export default function Auth({ mode }) {
 
         <Button
         type="submit"
-        color="blue"
-        className="w-full"
+        className="w-full bg-blue-400 hover:bg-blue-700"
         >
             {
                 mode === 'login' ?
