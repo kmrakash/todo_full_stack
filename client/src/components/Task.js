@@ -17,20 +17,25 @@ export default function Task() {
     // console.log(title);
     const taskInput = useRef(null);
 
-    useEffect( async ()=>{
+    useEffect(  ()=>{
 
         console.log("Running useEffect....");
 
-        try {
-            const res = await API({
-                endpoint : "/api/task"
-            }, authTokens);
+        const fetchData = async () => {
+            try {
+                const res = await API({
+                    endpoint: "/api/task"
+                }, authTokens);
 
-            // console.log("Fetched Data-->", res);
-            setList([...res]);
-        } catch (error) {
-            console.log("Fetched Error -->", error);
+        // console.log("Fetched Data-->", res);
+        setList([...res]);
+            } catch (error) {
+        console.log("Fetched Error -->", error);
+            }
         }
+
+        fetchData();
+
 
     },[setList, authTokens])
 
@@ -106,7 +111,7 @@ export default function Task() {
             console.log(res);
 
             const newList = list.map(task => {
-                if(task.uuid == uuid) {
+                if(task.uuid === uuid) {
                     return { ...task , title , isComplete };
                 }
                 return task;
