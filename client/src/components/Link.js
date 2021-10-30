@@ -6,9 +6,10 @@ export default function LinkCustom({ children , ...rest   }) {
 
     return <Link
         className={`
-        border
         p-2
         text-black
+        border-2
+        border-black
         hover:bg-red-700
         hover:text-white
         `}

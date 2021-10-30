@@ -16,7 +16,7 @@ export default function Header({logout, authTokens})  {
 
                     {!authTokens ? (
                         <li>
-                            <Button>
+                            <Button color="blue">
                             <Link to="/login">Login</Link>
                             </Button>
                         </li>
@@ -30,7 +30,7 @@ export default function Header({logout, authTokens})  {
                         </li>
 
                         <li>
-                            <Button onClick={logout}>Logout</Button>
+                            <Button color="blue" onClick={logout}>Logout</Button>
                         </li>
                                 </div>
                         </>

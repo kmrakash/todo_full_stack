@@ -1,14 +1,11 @@
+import axios from "axios";
+
+
 export function API({ endpoint = "", method = "GET", data = {} }, authTokens) {
 
     console.log(endpoint, method, data);
 
-    let body ;
-    try {
-     body = JSON.stringify(data);
-    }
-    catch (error) {
-        console.log('Error parsing JSON:', error, data);
-    }
+
 
   const config = {
     method,
@@ -21,12 +18,13 @@ export function API({ endpoint = "", method = "GET", data = {} }, authTokens) {
   };
 
   if(method !== "GET")
-    config.body = body;
+    config.data = data;
 
   console.log(config);
-  return fetch(endpoint, config)
+
+  return axios(endpoint, config)
     .then((response) => {
-      return response.json();
+        return response.data;
     })
     .catch((error) => console.log(error));
 }
@@ -38,12 +36,12 @@ export function login({ username = "", password = "" }) {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username, password }),
+    data: JSON.stringify({ username, password }),
   };
 
-  return fetch("/api/auth/signin", config)
+  return axios("/api/auth/signin", config)
     .then((response) => {
-      return response.json();
+      return response.data;
     })
     .catch((error) => {
       console.log(error);
@@ -57,12 +55,12 @@ export function register({ username = "", password = "" }) {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username, password }),
+    data: JSON.stringify({ username, password }),
   };
 
-  return fetch("/api/auth/signup", config)
+  return axios("/api/auth/signup", config)
     .then((response) => {
-      return response.json();
+        return response.data;
     })
     .catch((error) => {
       console.error(error);

@@ -97,6 +97,7 @@ export default function Auth({ mode }) {
 
         <Button
         type="submit"
+        color="blue"
         className="w-full"
         >
             {
