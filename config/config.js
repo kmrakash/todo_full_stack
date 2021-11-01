@@ -1,5 +1,6 @@
 require("dotenv").config();
 const fs = require("fs");
+const { env } = require("process");
 
 module.exports = {
   development: {
@@ -19,7 +20,7 @@ module.exports = {
 //     port: "5432",
 //   },
   production: {
-      use_env_variable: "postgresql-sinuous-22047",
+      use_env_variable: env.USE_VAR,
     username: process.env.PRODUCTION_DATABASE_USERNAME,
     password: process.env.PRODUCTION_DATABASE_PASSWORD,
     database: process.env.PRODUCTION_DATABASE,

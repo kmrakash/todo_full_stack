@@ -1,5 +1,4 @@
 "use strict";
-
 const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
@@ -9,7 +8,9 @@ const config = require(__dirname + "/../config/config.js")[env];
 const db = {};
 
 console.log("Config File-->", config);
-
+console.log("ENV: -->", env);
+console.log("USE ENV VARIABLE:-->", process.env[config.use_env_variable]);
+console.log("DATABASE URL:-->", process.env.DATABASE_URL);
 let sequelize;
 if (config.use_env_variable) {
     sequelize = new Sequelize(process.env[config.use_env_variable], config);
