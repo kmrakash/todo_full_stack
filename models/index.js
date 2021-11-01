@@ -10,13 +10,17 @@ const db = {};
 
 console.log("Config File-->", config);
 
-const sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  )
-
+let sequelize;
+if (config.use_env_variable) {
+    sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+    sequelize = new Sequelize(
+        config.database,
+        config.username,
+        config.password,
+        config
+    );
+}
 // To Test if a connection has been established
 async function test() {
     try {
