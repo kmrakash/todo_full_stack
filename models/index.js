@@ -13,8 +13,10 @@ console.log("USE ENV VARIABLE:-->", process.env[config.use_env_variable]);
 console.log("DATABASE URL:-->", process.env.DATABASE_URL);
 let sequelize;
 if (config.use_env_variable) {
+    console.log("PRODUCTION DATABASE -->")
     sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
+    console.log("DEVELOPMENT DATABASE -->")
     sequelize = new Sequelize(
         config.database,
         config.username,
